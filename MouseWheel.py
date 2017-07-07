@@ -18,11 +18,17 @@ Shift_L,   Down, Shift_L|Button5'''.format(val,val)
         f.write(a)
         f.close()
 
+def get_info_scroll():
+    with open(os.path.expanduser('~/.imwheelrc')) as f:
+        lista = [line.split() for line in f]
+        return lista [2][3]
+
 
 def gui():
     root = tk.Tk()
     scale = tk.Scale(orient='horizontal', from_=0, to=20, font=("Ubuntu Bold",18),command = scroll_speed)
     scale.pack()
+    scale.set(get_info_scroll())
     text = tk.Label( text="Mouse scroll speed",font=("Ubuntu",12))
     text.pack()
     root.resizable(False, False)
