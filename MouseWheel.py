@@ -2,7 +2,7 @@
 # Author: Ramiz Muharemovic
 # https://github.com/muharemovic
 #adjust the mouse scroll speed ubuntu
-import apt
+
 import os
 import tkinter as tk
 
@@ -28,7 +28,10 @@ def gui():
     root = tk.Tk()
     scale = tk.Scale(orient='horizontal', from_=0, to=20, font=("Ubuntu Bold",18),command = scroll_speed)
     scale.pack()
-    scale.set(get_info_scroll())
+    try:
+        scale.set(get_info_scroll())
+    except:
+        scale.set(10)
     text = tk.Label( text="Mouse scroll speed",font=("Ubuntu",12))
     text.pack()
     root.resizable(False, False)
