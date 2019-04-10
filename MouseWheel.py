@@ -22,7 +22,20 @@ def get_info_scroll():
     with open(os.path.expanduser('~/.imwheelrc')) as f:
         lista = [line.split() for line in f]
         return lista [2][3]
-
+def startup():
+    a = '''[Desktop Entry]
+Type=Application
+Exec=imwheel
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=imwheel
+Name=imwheel
+Comment[en_US]=
+Comment='''
+    with open(os.path.expanduser('~/.config/autostart/imwheel.desktop'), 'w') as f:
+        f.write(a)
+        f.close()
 
 def gui():
     root = tk.Tk()
@@ -40,22 +53,7 @@ def gui():
     root.mainloop()
     scroll_speed
     startup()
-    os.system("x-terminal-emulator -e imwheel -kill")
-
-def startup():
-    a = '''[Desktop Entry]
-Type=Application
-Exec=imwheel
-Hidden=false
-NoDisplay=false
-X-GNOME-Autostart-enabled=true
-Name[en_US]=imwheel
-Name=imwheel
-Comment[en_US]=
-Comment='''
-    with open(os.path.expanduser('~/.config/autostart/imwheel.desktop'), 'w') as f:
-        f.write(a)
-        f.close()
-
+    
 
 gui()
+os.system("x-terminal-emulator -e imwheel -kill")
